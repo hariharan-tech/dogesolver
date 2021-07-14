@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %}
+    Three Phase System
+{% endblock title %}
+{% block body %}
+<h6 class="text-light">(As of now, only balanced Loads work!)</h6>
+<h2 class="text-light my-5">Three Phase Electricity Solver</h2> 
+<form class="my-4 mx-auto w-50 text-light" action="/threephase" method="POST">
+    <div class="form-group my-4">
+        <label class="h5">Select the Type of System: </label>
+        <select class="form-select form-control" name="p_type">
+            <option selected>Choose the Type of System: </option>
+            <optgroup label="Star Connected Systems">
+              <option value="1">Star Connnected Balanced Load</option>
+              <!-- <option value="4">Star Connected Unbalanced Load - 3 wire</option>
+              <option value="5">Star Connected Unbalanced Load - 4 wire</option> -->
+            </optgroup>
+            <optgroup label="Delta Connected Systems">
+              <option value="2">Delta Connnected Balanced Load</option>
+              <!-- <option value="3">Delta Connected Unbalanced Load</option> -->
+            </optgroup>
+          </select>
+      </div>
+      <div class="form-group my-4">
+        <label class="h5">Select the input Voltage Type:</label>
+        <select class="form-control form-select" name="v_type">
+            <option selected>Choose the Type of System: </option>
+            <option value="p">Phase Voltage</option>
+            <option value="l">Line Voltage</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label h5">Enter the Voltage value:</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Voltage value of entered type" name="v">
+      </div>
+      <div class="mb-3">
+        <label class="form-label h5">Enter the Phase Impedance 1:</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Impedance 1" name="imp1">
+      </div>
+      <div class="mb-3">
+        <label class="form-label h5">Enter the Phase Impedance 2:</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Impedance 2" name="imp2">
+      </div>
+      <div class="mb-3">
+        <label class="form-label h5">Enter the Phase Impedance 3:</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Impedance 3" name="imp3">
+      </div>
+      <button type="submit h4" class="btn text-light btn-danger">Calculate</button>
+  </form>
+
+    <h3 class="my-5 text-white">Solution:</h3>
+    
+  <table class="table w-50 mx-auto text-light h6">
+  <thead>
+    <tr>
+      <th scope="col">Quantity</th>
+      <th scope="col">Value</th>
+      <th scope="col">Units</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type of System: {{ptype}}</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Type of Voltage Input: {{v_type}}</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Line Voltage</td>
+      <td>{{vl}}</td>
+      <td>Volts</td>
+    </tr>
+    <tr>
+      <td>Phase Voltage</td>
+      <td>{{vp}}</td>
+      <td>Volts</td>
+    </tr>
+    <tr>
+      <td>Phase Impedance 1</td>
+      <td>{{imp1}}</td>
+      <td>Ohms</td>
+    </tr>
+    <tr>
+      <td>Phase Impedance 2</td>
+      <td>{{imp2}}</td>
+      <td>Ohms</td>
+    </tr>
+    <tr>
+      <td>Phase Impedance 3</td>
+      <td>{{imp3}}</td>
+      <td>Ohms</td>
+    </tr>
+    <tr>
+      <td>Phase Current</td>
+      <td>{{ip}}</td>
+      <td>Amps</td>
+    </tr>
+    <tr>
+      <td>Line Current</td>
+      <td>{{il}}</td>
+      <td>Amps</td>
+    </tr>
+    <tr>
+      <td>Phase Current Amplitude</td>
+      <td>{{ipr}}</td>
+      <td>Amps</td>
+    </tr>
+    <tr>
+      <td>1st Phase Current Argument</td>
+      <td>{{ipa}}</td>
+      <td>Degrees</td>
+    </tr>
+    <tr>
+      <td>Real Power</td>
+      <td>{{p}}</td>
+      <td>Watts</td>
+    </tr>
+    <tr>
+      <td>Reactive Power</td>
+      <td>{{q}}</td>
+      <td>VAR</td>
+    </tr>
+    <tr>
+      <td>Apparent Power</td>
+      <td>{{s}}</td>
+      <td>kVA</td>
+    </tr>
+    <tr>
+      <td>Power Factor</td>
+      <td>{{pf}}</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Power Factor text</td>
+      <td>{{pftxt}}</td>
+      <td>-</td>
+  </tbody>
+</table>
+{% endblock body %}

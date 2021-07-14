@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% block title %}
+    5 Band Resistor
+{% endblock title %}
+{% block customstyle %}
+    .main-container{
+      /* width:90%; */
+      height: 100px;
+      margin:0 0 0 25%;
+      position:relative;
+      display: block;
+    }
+    .bulb{
+      position:absolute;
+      top:0;
+      background-color:#ffd445;
+      z-index:2;
+      border-top: 2px solid black;
+      border-bottom: 2px solid black;
+    }
+    .left-pin{
+      background-color:#616161;
+      position:absolute;
+      left:0;
+      width:6%;
+      top:32.5px;
+      height:30px;
+      z-index:0;
+      border-radius:10% 0 0 10%;
+      border: 2px solid black;
+    }
+    .right-pin{
+      background-color:#616161;
+      position:absolute;
+      left:50.6%;
+      width:6%;
+      top:32.5px;
+      height:30px;
+      z-index:0;
+      border-radius:0 10% 10% 0;
+      border: 2px solid black;
+    }
+    .left-bulb{
+      height:100px;
+      left:5%;
+      width:9%;
+      border-radius: 100% 30% 30% 100%;
+      border-left: 2px solid black;
+    }
+    .middle-tube{
+      position:absolute;
+      top:5px;
+      left:13%;
+      background-color:#ffd445;
+      width:30%;
+      height:90px;
+      z-index:1;
+      border: 2px solid black;
+    }
+    .right-bulb{
+      height:100px;
+      width:9%;
+      left:42%;
+      border-radius: 30% 100% 100% 30%;
+      border-right: 2px solid black;
+    }
+    .first-band{
+      background-color: {{firstcolor}};
+      left:15%;
+    }
+    .second-band{
+      background-color: {{secondcolor}};
+      left:19%;
+    }
+    .third-band{
+      background-color:{{thirdcolor}};
+      left:23%;
+    }
+    .fourth-band{
+      background-color:{{mcolor}};
+      left:27%;
+    }
+    .fifth-band{
+      background-color:{{tcolor}};
+      left:39%;
+    }
+    .band{
+      position:absolute;
+      top:0;
+      height:100px;
+      width:2%;
+      z-index:3;
+      border-radius:12%;
+      border: 2px solid black;
+    }
+    .ctext{
+      color:white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-shadow: 1px 1px black;
+      position: relative;
+      border: 1px solid black;
+    }
+    .firstext{
+      background-color: {{firstcolor}};
+      <!-- left:12%; -->
+      <!-- top:10%; -->
+      left:0;
+      z-index: 4;
+    }
+    .secondtext{
+      background-color: {{secondcolor}};
+      left:0;
+      top:35%;
+      z-index: 4;
+    }
+    .thirdtext{
+      background-color:{{thirdcolor}};
+      left:0;
+      top:61.5%;
+      z-index: 4;
+    }
+    .fourthtext{
+      background-color:{{mcolor}};
+      left:0;
+      top:10%;
+      z-index: 4;
+    }
+    .fifthtext{
+      background-color:{{tcolor}};
+      left:0;
+      top:65%;
+      z-index: 4;
+    }
+    @media screen and (max-width:1000px) {
+        .main-container{
+      width:95%;
+      margin:10px 0 15% 3%;
+      position:relative;
+    }
+    .left-pin{
+        width:20%;
+    }
+    .left-bulb{
+        left:10%;
+        width:15%;
+    }
+    .middle-tube{
+        left:24%;
+        width:37%;
+    }
+    .right-bulb{
+        left:60%;
+        width:15%;
+    }
+    .right-pin{
+        width:20%;
+        left:73.5%;
+    }
+    .band{
+        width:3.5%;
+    }
+    .first-band{
+        left:27%;
+    }
+    .second-band{
+        left:32%;
+    }
+    .third-band{
+        left:37%;
+    }
+    .fourth-band{
+      left:42%;
+  }
+    .fifth-band{
+        left:54%;
+    }
+    .firstext{
+      font-size:0.5rem;
+      left:-1rem;
+    }
+    .secondtext{
+      font-size:0.5rem;
+      left:-0.7rem;
+    }
+    .thirdtext{
+      font-size:0.5rem;
+      left:-1rem;
+    }
+    .fourthtext{
+      font-size:0.5rem;
+      left:-1rem;
+    }
+    .fifthtext{
+      font-size:0.5rem;
+      left:-1rem;
+    }
+    }
+{% endblock customstyle %}
+{% block body %}
+<h2 class="text-light my-5">5 Band Resistor Color Coding</h2>
+<form action="/fiveband" method="POST" class="text-light mx-auto my-5 w-50">
+  <div class="form-group my-4">
+    <label class="h5">First Band Color: </label>
+    <select class="form-control form-select" name="firstband" value={{firstband}}>
+      <option selected>--Select an Option--</option>
+      <option value="0">Black</option>
+      <option value="1">Brown</option>
+      <option value="2">Red</option>
+      <option value="3">Orange</option>
+      <option value="4">Yellow</option>
+      <option value="5">Green</option>
+      <option value="6">Blue</option>
+      <option value="7">Violet</option>
+      <option value="8">Gray</option>
+      <option value="9">White</option>
+    </select>
+  </div>
+  <div class="form-group my-4">
+    <label class="h5">Second Band Color:</label>
+    <select class="form-control form-select" name="secondband">
+      <option selected>--Select an Option--</option>
+      <option value="0">Black</option>
+      <option value="1">Brown</option>
+      <option value="2">Red</option>
+      <option value="3">Orange</option>
+      <option value="4">Yellow</option>
+      <option value="5">Green</option>
+      <option value="6">Blue</option>
+      <option value="7">Violet</option>
+      <option value="8">Gray</option>
+      <option value="9">White</option>
+    </select>
+  </div>
+  <div class="form-group my-4">
+    <label class="h5">Third Band Color:</label>
+    <select class="form-control form-select" name="thirdband">
+      <option selected>--Select an Option--</option>
+      <option value="0">Black</option>
+      <option value="1">Brown</option>
+      <option value="2">Red</option>
+      <option value="3">Orange</option>
+      <option value="4">Yellow</option>
+      <option value="5">Green</option>
+      <option value="6">Blue</option>
+      <option value="7">Violet</option>
+      <option value="8">Gray</option>
+      <option value="9">White</option>
+    </select>
+  </div>
+  <div class="form-group  my-4">
+    <label class="h5">Multiplier Band Color:</label>
+    <select class="form-control form-select" name="multiplier">
+      <option selected>--Select an Option--</option>
+      <option value="0">Black</option>
+      <option value="1">Brown</option>
+      <option value="2">Red</option>
+      <option value="3">Orange</option>
+      <option value="4">Yellow</option>
+      <option value="5">Green</option>
+      <option value="6">Blue</option>
+      <option value="7">Violet</option>
+      <option value="8">Gray</option>
+      <option value="9">White</option>
+      <option value="-1">Gold</option>
+      <option value="-2">Silver</option>
+    </select>
+  </div>
+  <div class="form-group my-4">
+    <label class="h5">Tolerance Band Color:</label>
+    <select class="form-control form-select" name="tolerance">
+      <option selected>--Select an Option--</option>
+      <option value="+ or - 5%">Gold</option>
+      <option value="+ or - 10%">Silver</option>
+      <option value="+ or - 1%">Brown</option>
+      <option value="+ or - 2%">Red</option>
+      <option value="+ or - 0.5%">Green</option>
+      <option value="+ or - 0.25%">Blue</option>
+      <option value="+ or - 0.10%">Violet</option>
+      <option value="+ or - 0.05%">Gray</option>
+    </select>
+  </div>
+  <button type="submit" class="btn text-light btn-danger">Calculate</button>
+</form>
+<div style="margin-bottom: 2.5%;"><h4 class="text-light">Resulting Resistance: </h4><span class="text-light h4">{{r}}</span></div>
+<div class="main-container">
+    <div class="left-pin"></div>
+    <div class="right-pin"></div>
+    <div class="left-bulb bulb"></div>
+    <div class="middle-tube"></div>
+    <div class="right-bulb bulb"></div>
+    <div class="first-band band"><span class="ctext firstext">{{firstcolor}}</span></div>
+    <div class="second-band band"><span class="ctext secondtext">{{secondcolor}}</span></div>
+    <div class="third-band band"><span class="ctext thirdtext">{{thirdcolor}}</span></div>
+    <div class="fourth-band band"><span class="ctext fourthtext">{{mcolor}}</span></div>
+    <div class="fifth-band band"><span class="ctext fifthtext">{{tcolor}}</span></div>
+      </div>
+{% endblock body %}

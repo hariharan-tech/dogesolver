@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}
+    Astable Timer
+{% endblock title %}
+{% block body %}
+<h2 class="text-light my-5">Astable Time and Frequency Calculator</h2>
+<img src="https://www.circuitbasics.com/wp-content/uploads/2014/12/555-timer-astable-mode-circuit1.jpg" alt="" class="w-50">
+<form action="/astabletimer" method="POST" class="my-4 mx-auto w-50 text-light">
+    <div class="mb-3">
+        <label class="form-label h5">Enter the Resistor 1 value (R1):</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Resistor 1 (R1) in Kilo Ohms" name="r1">
+    </div>
+    <div class="mb-3">
+        <label class="form-label h5">Enter the Resistor 2 value (R2):</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Resistor 2 (R2) in Kilo Ohms" name="r2">
+    </div>
+    <div class="mb-3">
+        <label class="form-label h5">Enter the Capacitor value (C1):</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Capacitor (C1)" name="c1">
+    </div>
+    <div class="form-group my-4">
+      <label class="h5">Unit of Input Capacitance: </label>
+      <select class="form-control form-select" name="unitc">
+        <option selected>--Select an Option--</option>
+        <option value="-3">milliFarad (mF)</option>
+        <option value="-6">microFarad (µF)</option>
+        <option value="-9">nanoFarad (nF)</option>
+      </select>
+    </div>
+    <button type="submit h4" class="btn text-light btn-danger">Calculate</button>
+</form>
+<h4 class="my-5 text-white">Time and Frequency:</h4>
+<table class="table w-50 mx-auto text-light h6 my-5">
+    <thead>
+        <tr>
+          <th scope="col">Signal value</th>
+          <th scope="col">Time</th>
+          <th scope="col">Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>ON state</td>
+        <td>{{ont}}</td>
+        <td>{{onf}}</td>
+      </tr>
+      <tr>
+        <td>OFF state</td>
+        <td>{{offt}}</td>
+        <td>{{offf}}</td>
+      </tr>
+      <tr>
+        <td>Total Duty Cycle</td>
+        <td>{{duty}}</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+</table>
+{% endblock body %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block body %}
+<h2 class="my-3">Welcome to Dogesolver!</h2>
+<h4 class="my-1">Check out our Web-apps</h4>
+<div class="row row-cols-1 row-cols-md-2 g-4 mx-3 my-3">
+        <div class="col">
+        <div class="card bg-dark text-light">
+          <img src="static/threephase.png" class="card-img-top" alt="three_phase_solver_img">
+          <div class="card-body">
+            <a href="/threephase" class="link-light"><h5 class="card-title">Three Phase Electricity Solver</h5></a>
+            <p class="card-text">This online web-app built by DogeSolver can solve Three Phase Electricity problems from the given input variables. (As of now, only balanced Loads work!)</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-dark text-light">
+            <img src="static/fourband.png" class="card-img-top" alt="4_band_resistor_img">
+          <div class="card-body">
+            <a href="/fourband" class="link-light"><h5 class="card-title">Resistor Color Coding - 4 Bands</h5></a>
+            <p class="card-text">This online web-app built by DogeSolver can solve Resistor Color coding for 4 Bands from the given input variables.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-dark text-light">
+            <img src="static/fiveband.png" class="card-img-top" alt="5_band_resistor_img">
+          <div class="card-body">
+            <a href="/fiveband" class="link-light"><h5 class="card-title">Resistor Color Coding - 5 Bands</h5></a>
+            <p class="card-text">This online web-app built by DogeSolver  can solve Resistor Color coding for 5 Bands from the given input variables.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-dark text-light">
+            <img src="static/astabletimer.png" class="card-img-top" alt="ne555_astable_img">
+          <div class="card-body">
+            <a href="/astabletimer" class="link-light"><h5 class="card-title">NE555 Astable Mode Timer</h5></a>
+            <p class="card-text">This online web-app can calculate the On and Off time in Astable mode timer Circuit <br>(NE555 timer Astable mode).</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card bg-dark text-light">
+            <img src="static/aboutus.png" class="card-img-top" alt="about_us_img">
+          <div class="card-body">
+            <a href="/aboutus" class="link-light"><h5 class="card-title">About US</h5></a>
+            <p class="card-text">About DogeSolver and its Creator.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock body %}
