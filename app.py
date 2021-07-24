@@ -4,21 +4,24 @@ import datetime
 
 app = Flask(__name__)
 
+def roundc(c):
+    return complex(round(c.real,4),round(c.imag,4))
+
 def sb(ti):
     if ti[0]=="l":
         vl=ti[1]
-        vp=ti[1]/((3)**(1/2))
+        vp=roundc(ti[1]/((3)**(1/2)))
     else:
-        vl = ti[1]*((3)**(1 / 2))
+        vl = roundc(ti[1]*((3)**(1 / 2)))
         vp=ti[1]
-    ip=vp/ti[2]
+    ip=roundc(vp/ti[2])
     il=ip
-    ipr=cmath.polar(ip)[0]
-    ipa=(cmath.polar(ip)[1]*57.324)
-    p=(3**(1/2))*(cmath.polar(vl)[0])*(cmath.polar(ip)[0])*(math.cos(abs(cmath.polar(ip)[1]-cmath.polar(vp)[1])))
-    q=(3**(1/2))*(cmath.polar(vl)[0])*(cmath.polar(ip)[0])*(math.sin(abs(cmath.polar(ip)[1]-cmath.polar(vp)[1])))
-    s=(p**2 + q**2 )**(1/2)
-    pf=math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1])
+    ipr=round(cmath.polar(ip)[0],4)
+    ipa=round((cmath.polar(ip)[1]*57.324),4)
+    p=round((3**(1/2))*(cmath.polar(vl)[0])*(cmath.polar(ip)[0])*(math.cos(abs(cmath.polar(ip)[1]-cmath.polar(vp)[1]))),4)
+    q=round((3**(1/2))*(cmath.polar(vl)[0])*(cmath.polar(ip)[0])*(math.sin(abs(cmath.polar(ip)[1]-cmath.polar(vp)[1]))),4)
+    s=round((p**2 + q**2 )**(1/2),4)
+    pf=round(math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1]),4)
     if (cmath.polar(ip)[1]) <0:
         pftxt=" lagging"
     elif (cmath.polar(ip)[1]) >=0:
@@ -30,14 +33,14 @@ def sb(ti):
 
 def db(ti):
     vp=vl=ti[1]
-    ip=vp/ti[2]
-    il=ip*(3**(1/2))
-    ipr=cmath.polar(ip)[0]
-    ipa=(cmath.polar(ip)[1]*57.324)
-    p=(3**(1/2))*(cmath.polar(vp)[0])*(cmath.polar(il)[0])*(math.cos(abs(cmath.polar(il)[1]-cmath.polar(vp)[1])))
-    q=(3**(1/2))*(cmath.polar(vp)[0])*(cmath.polar(il)[0])*(math.sin(abs(cmath.polar(il)[1]-cmath.polar(vp)[1])))
-    s=(p**2 + q**2 )**(1/2)
-    pf=math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1])
+    ip=roundc(vp/ti[2])
+    il=roundc(ip*(3**(1/2)))
+    ipr=round(cmath.polar(ip)[0],4)
+    ipa=round((cmath.polar(ip)[1]*57.324),4)
+    p=round((3**(1/2))*(cmath.polar(vp)[0])*(cmath.polar(il)[0])*(math.cos(abs(cmath.polar(il)[1]-cmath.polar(vp)[1]))),4)
+    q=round((3**(1/2))*(cmath.polar(vp)[0])*(cmath.polar(il)[0])*(math.sin(abs(cmath.polar(il)[1]-cmath.polar(vp)[1]))),4)
+    s=round((p**2 + q**2 )**(1/2),4)
+    pf=round(math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1]),4)
     if (cmath.polar(ip)[1]) <0:
         pftxt=" lagging"
     elif (cmath.polar(ip)[1]) >=0:
