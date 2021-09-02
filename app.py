@@ -123,7 +123,7 @@ def resultfour():
         sband=request.form['secondband']
         m=int(request.form['multiplier'])
         t=request.form['tolerance']
-        r=str(int(fband+sband)*((10)**(m)))+" "+t+" Ohms"
+        r=str(int(fband+sband)*((10)**(m)))+" ± "+t.split("+ or - ")[1]+" Ohms"
         rl=retcolor([fband,sband,str(m),t])
         return render_template("resistorfour.html",r=r,firstcolor=rl[0],secondcolor=rl[1],mcolor=rl[2],tcolor=rl[3])
     else:
@@ -137,9 +137,8 @@ def resultfive():
         sband=request.form['secondband']
         tband=request.form['thirdband']
         m=int(request.form['multiplier'])
-        print(m)
         t=request.form['tolerance']
-        r=str(int(fband+sband+tband)*((10)**(m)))+" "+t+" Ohms"
+        r=str(int(fband+sband+tband)*((10)**(m)))+" ± "+t.split("+ or - ")[1]+" Ohms"
         rl=retcolor([fband,sband,tband,str(m),t])
         return render_template("resistorfive.html",r=r,firstcolor=rl[0],secondcolor=rl[1],thirdcolor=rl[2],mcolor=rl[3],tcolor=rl[4])
     else:
