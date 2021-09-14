@@ -8,12 +8,42 @@
     <style>  body{
       text-align: center;
     }
-        .wform{
-        width: 70%; }
-        .nav-item{
-        padding:0 20px;}
+    .nav-item{
+      padding:0 20px;
+    }
+    .wform{
+      width:70%;
+    }
+    #homecontainer.container-fluid{
+      padding: 0 6%;
+    }
     footer{
-      height: 100px; position: absolute;margin-top: 2%; padding-top: 13px;
+      height: 100px; 
+      position: absolute;
+      margin-top: 2%; 
+      padding: 13px 0 0;
+      height:7rem;
+    }
+    .footerlink{
+      font-size: 1rem;
+      margin: 0;
+    }
+    .containertable{
+    font-size:1rem;
+    width:58%;
+    margin: 0 auto;
+  }
+  @media (max-width:900px){
+    .containertable{
+      font-size:0.9rem;
+      width:90%;
+      margin: 0 auto;
+    }
+  }
+    @media (max-width:500px) {
+      .footerlink{
+        font-size: 0.75rem;
+      }
     }
     {% block customstyle %}{% endblock customstyle %}
     </style>
@@ -53,16 +83,16 @@
       </nav>
       {% block body %}
       {% endblock body %}
-      <footer class="w-100 bg-dark text-light">
-        <table class="w-100 mx-auto text-light h6">
+      <footer class="w-100 bg-dark">
+        <table class="w-100 ">
           <tr>
-            <td><a class="text-light" href="https://github.com/hariharan-tech/dogesolver">@DogeSolver - Creator's Github Page</a></td>
+            <td><a class="text-light footerlink" href="https://github.com/hariharan-tech/dogesolver">@DogeSolver - Creator's Github Page</a></td>
           </tr>
           <tr>
-            <td><a class="text-light" href="https://www.instagram.com/hybrid_electrotech/">@DogeSolver - Creator's Instagram Page</a></td>
+            <td><a class="text-light footerlink" href="https://www.instagram.com/hybrid_electrotech/">@DogeSolver - Creator's Instagram Page</a></td>
           </tr>
           <tr>
-            <td><a class="text-light" href="https://www.youtube.com/channel/UCMAjKypANYXpEaPAb3KtGtQ">@DogeSolver - Creator's Youtube Channel</a></td>
+            <td><a class="text-light footerlink" href="https://www.youtube.com/channel/UCMAjKypANYXpEaPAb3KtGtQ">@DogeSolver - Creator's Youtube Channel</a></td>
           </tr>
         </table>
       </footer>
