@@ -2,12 +2,27 @@
 {% block title %}
     Three Phase System
 {% endblock title %}
+{% block customstyle %}
+  .balancedonly{
+    font-size:1rem;
+    margin:10px 0 25px;
+  }
+  .tptitle{
+    font-size:1.50rem;
+  }
+  .form-label{
+    font-size:1.25rem;
+  }
+  .wform{
+    margin-top:50px;
+  }
+{% endblock customstyle %}
 {% block body %}
-<h6 class="text-light">(As of now, only balanced Loads work!)</h6>
-<h2 class="text-light my-5">Three Phase Electricity Solver</h2> 
-<form class="my-4 mx-auto wform text-light" action="/threephase" method="POST">
+<h6 class="text-light balancedonly">(As of now, only balanced Loads work!)</h6>
+<h2 class="text-light tptitle">Three Phase Electricity Solver</h2>
+<form class="mx-auto wform text-light" action="/threephase" method="POST">
     <div class="form-group my-4">
-        <label class="h5">Select the Type of System: </label>
+        <label class="form-label">Select the Type of System: </label>
         <select class="form-select form-control" name="p_type">
             <option selected>Choose the Type of System: </option>
             <optgroup label="Star Connected Systems">
@@ -22,7 +37,7 @@
           </select>
       </div>
       <div class="form-group my-4">
-        <label class="h5">Select the input Voltage Type:</label>
+        <label class="form-label">Select the input Voltage Type:</label>
         <select class="form-control form-select" name="v_type">
             <option selected>Choose the Type of System: </option>
             <option value="p">Phase Voltage</option>
@@ -30,27 +45,27 @@
         </select>
       </div>
       <div class="mb-3">
-        <label class="form-label h5">Enter the Voltage value:</label>
+        <label class="form-label">Enter the Voltage value:</label>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Voltage value of entered type" name="v">
       </div>
       <div class="mb-3">
-        <label class="form-label h5">Enter the Phase Impedance 1:</label>
+        <label class="form-label">Enter the Phase Impedance 1:</label>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Impedance 1" name="imp1">
       </div>
       <div class="mb-3">
-        <label class="form-label h5">Enter the Phase Impedance 2:</label>
+        <label class="form-label">Enter the Phase Impedance 2:</label>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Impedance 2" name="imp2">
       </div>
       <div class="mb-3">
-        <label class="form-label h5">Enter the Phase Impedance 3:</label>
+        <label class="form-label">Enter the Phase Impedance 3:</label>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Impedance 3" name="imp3">
       </div>
-      <button type="submit h4" class="btn text-light btn-danger">Calculate</button>
+      <button type="submit" class="btn text-light btn-danger">Calculate</button>
   </form>
 
-    <h3 class="my-5 text-white">Solution:</h3>
-    
-  <table class="table w-50 mx-auto text-light h6">
+    <h3 class="my-5 text-white tptitle">Solution:</h3>
+  <div class="containertable">
+  <table class="table text-light">
   <thead>
     <tr>
       <th scope="col">Quantity</th>
@@ -105,14 +120,9 @@
       <td>Amps</td>
     </tr>
     <tr>
-      <td>Phase Current Amplitude</td>
+      <td>1st Phase Current</td>
       <td>{{ipr}}</td>
       <td>Amps</td>
-    </tr>
-    <tr>
-      <td>1st Phase Current Argument</td>
-      <td>{{ipa}}</td>
-      <td>Degrees</td>
     </tr>
     <tr>
       <td>Real Power</td>
@@ -134,10 +144,7 @@
       <td>{{pf}}</td>
       <td>-</td>
     </tr>
-    <tr>
-      <td>Power Factor text</td>
-      <td>{{pftxt}}</td>
-      <td>-</td>
   </tbody>
 </table>
+</div>
 {% endblock body %}
