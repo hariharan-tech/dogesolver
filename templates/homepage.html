@@ -2,10 +2,24 @@
 {% block title %}
     Home
 {% endblock title %}
+{% block customstyle %}
+  .welcometext{
+    margin: 20px 0 10px;
+  }
+  @media (max-width:500px){
+    .welcometext{
+      font-size: 1.25rem;
+    }
+    .cotext{
+      font-size:1rem;
+    }
+  }
+{% endblock customstyle %}
 {% block body %}
-<h2 class="my-3">Welcome to Dogesolver!</h2>
-<h4 class="my-1">Check out our Web-apps</h4>
-<div class="row row-cols-1 row-cols-md-2 g-4 mx-3 my-3">
+<h2 class="welcometext">Welcome to Dogesolver!</h2>
+<h4 class="cotext">Check out our Web-apps</h4>
+<div class="container-fluid" id="homecontainer">
+<div class="row row-cols-1 row-cols-md-2 g-4 my-3">
         <div class="col">
         <div class="card bg-dark text-light">
           <img src="static/threephase.png" class="card-img-top" alt="three_phase_solver_img">
@@ -52,4 +66,5 @@
         </div>
       </div>
   </div>
+</div>
 {% endblock body %}
