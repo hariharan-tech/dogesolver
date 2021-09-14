@@ -52,8 +52,8 @@ def db(ti):
         q=proundk(q)
     if p>1000:
         p=proundk(p)
-    if q>1000:
-        q=proundk(q)
+    if s>1000:
+        s=proundk(s)
     pf=round(math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1]),4)
     if (cmath.polar(ip)[1]) <0:
         pftxt=" lagging"
@@ -177,4 +177,4 @@ def timerastable():
         return render_template("astabletimer.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
