@@ -5,7 +5,10 @@ import datetime
 app = Flask(__name__)
 
 def roundc(c):
-    return complex(round(c.real,4),round(c.imag,4))
+    return complex(round(c.real,3),round(c.imag,3))
+
+def proundk(p):
+    return str(round((p/1000),3))+" k"
 
 def sb(ti):
     if ti[0]=="l":
@@ -16,38 +19,50 @@ def sb(ti):
         vp=ti[1]
     ip=roundc(vp/ti[2])
     il=ip
-    ipr=round(cmath.polar(ip)[0],4)
-    ipa=round((cmath.polar(ip)[1]*57.324),4)
+    ipr=str(round(cmath.polar(ip)[0],3))+" at "+str(round((cmath.polar(ip)[1]*57.324),3))+"°"
     p=round((3**(1/2))*(cmath.polar(vl)[0])*(cmath.polar(ip)[0])*(math.cos(abs(cmath.polar(ip)[1]-cmath.polar(vp)[1]))),4)
     q=round((3**(1/2))*(cmath.polar(vl)[0])*(cmath.polar(ip)[0])*(math.sin(abs(cmath.polar(ip)[1]-cmath.polar(vp)[1]))),4)
     s=round((p**2 + q**2 )**(1/2),4)
+    if p>1000:
+        p=proundk(p)
+    if q>1000:
+        q=proundk(q)
+    if s>1000:
+        s=proundk(s)
     pf=round(math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1]),4)
     if (cmath.polar(ip)[1]) <0:
         pftxt=" lagging"
-    elif (cmath.polar(ip)[1]) >=0:
-        pftxt="leading"
+    elif (cmath.polar(ip)[1]) >0:
+        pftxt=" leading"
     else:
-        pftxt="unity"
-    return (vl,vp,ip,ipr,ipa,p,q,s,pf,pftxt,il)
+        pftxt=" unity"
+    pf=str(round(pf,3))+pftxt
+    return (vl,vp,ip,ipr,p,q,s,pf,il)
     
 
 def db(ti):
     vp=vl=ti[1]
     ip=roundc(vp/ti[2])
     il=roundc(ip*(3**(1/2)))
-    ipr=round(cmath.polar(ip)[0],4)
-    ipa=round((cmath.polar(ip)[1]*57.324),4)
+    ipr=str(round(cmath.polar(ip)[0],3))+" at "+str(round((cmath.polar(ip)[1]*57.324),3))+"°"
     p=round((3**(1/2))*(cmath.polar(vp)[0])*(cmath.polar(il)[0])*(math.cos(abs(cmath.polar(il)[1]-cmath.polar(vp)[1]))),4)
     q=round((3**(1/2))*(cmath.polar(vp)[0])*(cmath.polar(il)[0])*(math.sin(abs(cmath.polar(il)[1]-cmath.polar(vp)[1]))),4)
     s=round((p**2 + q**2 )**(1/2),4)
+    if q>1000:
+        q=proundk(q)
+    if p>1000:
+        p=proundk(p)
+    if q>1000:
+        q=proundk(q)
     pf=round(math.cos(cmath.polar(vp)[1]-cmath.polar(ip)[1]),4)
     if (cmath.polar(ip)[1]) <0:
         pftxt=" lagging"
     elif (cmath.polar(ip)[1]) >=0:
-        pftxt="leading"
+        pftxt=" leading"
     else:
-        pftxt="unity"
-    return (vl,vp,ip,ipr,ipa,p,q,s,pf,pftxt,il)
+        pftxt=" unity"
+    pf=str(round(pf,3))+pftxt
+    return (vl,vp,ip,ipr,p,q,s,pf,il)
 
 
 @app.route('/')
@@ -81,7 +96,7 @@ def threephase():
                 else:
                     v_type="Phase Voltage"
                 # (vl,vp,ip,ipr,ipa,p,q,s,pf,pftxt)
-            return render_template('threephase.html',ptype=ptype,v_type=v_type,vl=res[0],vp=res[1],imp1=imp1,imp2=imp2,imp3=imp3,ip=res[2],ipr=res[3],ipa=res[4],p=res[5],q=res[6],s=res[7],pf=res[8],pftxt=res[9],il=res[10])
+            return render_template('threephase.html',ptype=ptype,v_type=v_type,vl=res[0],vp=res[1],imp1=imp1,imp2=imp2,imp3=imp3,ip=res[2],ipr=res[3],p=res[4],q=res[5],s=res[6],pf=res[7],il=res[8])
         else:
             return render_template('threephase.html')
     else:
@@ -157,9 +172,9 @@ def timerastable():
         ont=0.693*(r1+r2)*c
         offt=0.693*r2*c
         duty=ont/(ont+offt)
-        return render_template("astabletimer.html",ont=str(round(ont,5))+" s",onf=str(round((1/ont),5))+" Hz",offt=str(round(offt,5))+" s",offf=str(round((1/offt),5))+" Hz",duty=str(round(duty,5)*100)+" %")
+        return render_template("astabletimer.html",ont=str(round(ont,3))+" s",onf=str(round((1/ont),3))+" Hz",offt=str(round(offt,3))+" s",offf=str(round((1/offt),3))+" Hz",duty=str(round(duty,3)*100)+" %")
     else:
         return render_template("astabletimer.html")
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
