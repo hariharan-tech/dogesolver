@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block title %}
+    8 x 8 Matrix custom coding
+{% endblock title %}
+{% block customstyle %}
+.title{
+    font-size:2rem;
+    margin:20px 0 50px;
+}
+
+  .btn{
+      margin:10px 0;
+  }
+  .checkboxe{
+    height:50px;
+    width:50px;
+  }
+  textarea{
+      background-color:#212529;
+      color:white;
+  }
+  .gencode{
+      font-size:1.3rem;
+  }
+  .rowr{
+      diplay:block;
+  }
+  @media screen and (max-width:650px){
+    .checkboxe{
+        height:40px;
+        width:40px;
+      }
+      .title{
+          margin:10px 0 20px;
+      }
+  }
+  @media screen and (max-width:450px){
+    .checkboxe{
+        height:27px;
+        width:27px;
+      }
+      .title{
+          font-size:1.2rem;
+      }
+      .gencode{
+          font-size:1rem;
+      }
+  }
+{% endblock customstyle %}
+{% block body %}
+<h2 class="title">8x8 LED Matrix custom code generator</h2>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col col-12 col-lg-6">
+    <form action="/exematrix" method="POST">
+        <div class="ledbox">
+            <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="00" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="01" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="02" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="03" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="04" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="05" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="06" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="07" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="10" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="11" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="12" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="13" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="14" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="15" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="16" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="17" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="20" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="21" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="22" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="23" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="24" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="25" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="26" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="27" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="30" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="31" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="32" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="33" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="34" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="35" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="36" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="37" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="40" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="41" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="42" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="43" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="44" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="45" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="46" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="47" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="50" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="51" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="52" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="53" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="54" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="55" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="56" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="57" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="60" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="61" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="62" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="63" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="64" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="65" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="66" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="67" class="checkboxe">
+                </div>
+                
+                <div class="rowr">
+                <input type="checkbox" id="" name="boxr" value="70" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="71" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="72" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="73" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="74" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="75" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="76" class="checkboxe">
+                <input type="checkbox" id="" name="boxr" value="77" class="checkboxe">
+                </div>
+        </div>
+        <a href="/exematrix" class="link-light">Clear all selection</a>
+        <br>
+        <button type="submit" class="btn btn-danger btn-lg">Generate code</button>
+    </form>
+    </div>
+    <div class="col col-12 col-lg-6">
+        <h3 class="gencode">Generated code:</h3>
+        <textarea cols="30" rows="23">{{result}}</textarea>
+    </div>
+</div>
+</div>
+{% endblock body %}
