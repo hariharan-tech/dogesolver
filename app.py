@@ -1,6 +1,5 @@
 from flask import Flask , render_template , request
 import math , cmath
-import datetime
 
 app = Flask(__name__)
 
@@ -9,6 +8,24 @@ def roundc(c):
 
 def proundk(p):
     return str(round((p/1000),3))+" k"
+
+def generatecode(inlist):
+    rinhex="{\n"
+    result=""
+    rinbin = "//Result in binary: \n"+rinhex
+    rinhex = "//Result in Hexadecimal: \n"+rinhex
+    inlist = sorted(inlist)
+    for i in range(8):
+        rline=""
+        for j in range(8):
+            if ((str(i)+str(j)) in inlist):
+                rline+="1"
+            else:
+                rline+="0"
+        rinbin=rinbin+rline+",\n"
+        rinhex=rinhex+(hex(int(rline,2)))+",\n"
+    result=rinbin+"}\n\n"+rinhex+"}"
+    return result
 
 def sb(ti):
     if ti[0]=="l":
@@ -64,10 +81,15 @@ def db(ti):
     pf=str(round(pf,3))+pftxt
     return (vl,vp,ip,ipr,p,q,s,pf,il)
 
-
 @app.route('/')
 def Homepage():
     return render_template("homepage.html")
+
+@app.route("/exematrix",methods=['GET','POST'])
+def hello_world():
+    if request.method=="POST":
+            return render_template("exematrix.html",result=generatecode(request.form.getlist("boxr")))
+    return render_template("exematrix.html")
 
 @app.route('/threephase',methods=['GET','POST'])
 def threephase():
