@@ -24,7 +24,7 @@
     <div class="form-group my-4">
         <label class="form-label">Select the Type of System: </label>
         <select class="form-select form-control" name="p_type">
-            <option selected>Choose the Type of System: </option>
+            <option selected value="none">Choose the Type of System: </option>
             <optgroup label="Star Connected Systems">
               <option value="1">Star Connnected Balanced Load</option>
               <!-- <option value="4">Star Connected Unbalanced Load - 3 wire</option>
@@ -39,7 +39,7 @@
       <div class="form-group my-4">
         <label class="form-label">Select the input Voltage Type:</label>
         <select class="form-control form-select" name="v_type">
-            <option selected>Choose the Type of System: </option>
+            <option selected value="none">Choose the Type of System: </option>
             <option value="p">Phase Voltage</option>
             <option value="l">Line Voltage</option>
         </select>
@@ -66,84 +66,13 @@
     <h3 class="my-5 text-white tptitle">Solution:</h3>
   <div class="containertable">
   <table class="table text-light">
-  <thead>
-    <tr>
-      <th scope="col">Quantity</th>
-      <th scope="col">Value</th>
-      <th scope="col">Units</th>
-    </tr>
-  </thead>
   <tbody>
+    {% for key, value in result.items() %}
     <tr>
-      <td>Type of System</td>
-      <td>{{ptype}}</td>
-      <td>-</td>
+      <td>{{key}}</td>
+      <td>{{value}}</td>
     </tr>
-    <tr>
-      <td>Type of Voltage Input</td>
-      <td>{{v_type}}</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>Line Voltage</td>
-      <td>{{vl}}</td>
-      <td>Volts</td>
-    </tr>
-    <tr>
-      <td>Phase Voltage</td>
-      <td>{{vp}}</td>
-      <td>Volts</td>
-    </tr>
-    <tr>
-      <td>Phase Impedance 1</td>
-      <td>{{imp1}}</td>
-      <td>Ohms</td>
-    </tr>
-    <tr>
-      <td>Phase Impedance 2</td>
-      <td>{{imp2}}</td>
-      <td>Ohms</td>
-    </tr>
-    <tr>
-      <td>Phase Impedance 3</td>
-      <td>{{imp3}}</td>
-      <td>Ohms</td>
-    </tr>
-    <tr>
-      <td>Phase Current</td>
-      <td>{{ip}}</td>
-      <td>Amps</td>
-    </tr>
-    <tr>
-      <td>Line Current</td>
-      <td>{{il}}</td>
-      <td>Amps</td>
-    </tr>
-    <tr>
-      <td>1st Phase Current</td>
-      <td>{{ipr}}</td>
-      <td>Amps</td>
-    </tr>
-    <tr>
-      <td>Real Power</td>
-      <td>{{p}}</td>
-      <td>Watts</td>
-    </tr>
-    <tr>
-      <td>Reactive Power</td>
-      <td>{{q}}</td>
-      <td>VAR</td>
-    </tr>
-    <tr>
-      <td>Apparent Power</td>
-      <td>{{s}}</td>
-      <td>kVA</td>
-    </tr>
-    <tr>
-      <td>Power Factor</td>
-      <td>{{pf}}</td>
-      <td>-</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 </div>
