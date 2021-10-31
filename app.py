@@ -54,7 +54,16 @@ def sb(ti):
     else:
         pftxt=" unity"
     pf=str(round(pf,3))+pftxt
-    return (vl,vp,ip,ipr,p,q,s,pf,il)
+    return {"Line Voltage":str(vl)+" V",
+            "Phase Voltage":str(vl)+" V",
+            "Phase Current ":str(ip)+" A",
+            "Line Current":str(il)+" A",
+            "Phase current (Polar form)":str(ipr)+" ",
+            "Power factor":pf,
+            "Real Power":p+" W",
+            "Reactive Power":q+" W",
+            "Apparent Power":s+" "}
+    # return (vl,vp,ip,ipr,p,q,s,pf,il)
     
 
 def db(ti):
@@ -79,7 +88,16 @@ def db(ti):
     else:
         pftxt=" unity"
     pf=str(round(pf,3))+pftxt
-    return (vl,vp,ip,ipr,p,q,s,pf,il)
+    return {"Line Voltage":str(vl)+" V",
+            "Phase Voltage":str(vl)+" V",
+            "Phase Current ":str(ip)+" A",
+            "Line Current":str(il)+" A",
+            "Phase current (Polar form)":str(ipr)+" ",
+            "Power factor":pf,
+            "Real Power":p+" W",
+            "Reactive Power":q+" W",
+            "Apparent Power":s+" "}
+    # return (vl,vp,ip,ipr,p,q,s,pf,il)
 
 @app.route('/')
 def Homepage():
@@ -96,6 +114,8 @@ def threephase():
     if request.method=='POST':
         ptype=request.form['p_type']
         v_type=request.form['v_type']
+        if ptype=="none" or v_type == "none":
+            return render_template("threephase.html",result={})
         v=complex(request.form['v'])
         imp1=complex(request.form['imp1'])
         imp2=complex(request.form['imp2'])
@@ -118,11 +138,17 @@ def threephase():
                 else:
                     v_type="Phase Voltage"
                 # (vl,vp,ip,ipr,ipa,p,q,s,pf,pftxt)
-            return render_template('threephase.html',ptype=ptype,v_type=v_type,vl=res[0],vp=res[1],imp1=imp1,imp2=imp2,imp3=imp3,ip=res[2],ipr=res[3],p=res[4],q=res[5],s=res[6],pf=res[7],il=res[8])
+            result = {"Type of system":ptype,
+                    "Input Voltage type":v_type,
+                    "Phase Impedance 1":str(imp1)+" Ohms",
+                    "Phase Impedance 2":str(imp2)+" Ohms",
+                    "Phase Impedance 3":str(imp3)+" Ohms"}
+            result.update(res)
+            return render_template('threephase.html',result=result)
         else:
-            return render_template('threephase.html')
+            return render_template('threephase.html',result={})
     else:
-        return render_template('threephase.html')
+        return render_template('threephase.html',result={})
 
 def retcolor(l):
     d={
@@ -199,4 +225,4 @@ def timerastable():
         return render_template("astabletimer.html")
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
