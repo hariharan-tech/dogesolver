@@ -1,4 +1,4 @@
-# dogesolver
+# Dogesolver
 A flask based webapp with 5 calculating features.
 <br><br><br>
 #Updates<br><br>
